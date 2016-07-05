@@ -87,16 +87,40 @@
 
 
 
-<meta name="description" content="开始安装">
+<meta name="description" content="开始安装# 安装其他依赖软件
+yum -y install tomcat unzip
+
+# 让 tomcat 开机自启动
+systemctl enable tomcat
+
+# 安装 Nginx，示例安装的是 1.10.1 版本
+yum -y install pcre-devel zlib-devel                    # 安装依赖
+wget http://nginx.org/d">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RAP - 安装与使用">
 <meta property="og:url" content="http://hookidea.github.io/2016/07/05/RAP-的安装与使用/index.html">
 <meta property="og:site_name" content="Hookidea">
-<meta property="og:description" content="开始安装">
-<meta property="og:updated_time" content="2016-07-05T11:16:36.299Z">
+<meta property="og:description" content="开始安装# 安装其他依赖软件
+yum -y install tomcat unzip
+
+# 让 tomcat 开机自启动
+systemctl enable tomcat
+
+# 安装 Nginx，示例安装的是 1.10.1 版本
+yum -y install pcre-devel zlib-devel                    # 安装依赖
+wget http://nginx.org/d">
+<meta property="og:updated_time" content="2016-07-05T11:24:42.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RAP - 安装与使用">
-<meta name="twitter:description" content="开始安装">
+<meta name="twitter:description" content="开始安装# 安装其他依赖软件
+yum -y install tomcat unzip
+
+# 让 tomcat 开机自启动
+systemctl enable tomcat
+
+# 安装 Nginx，示例安装的是 1.10.1 版本
+yum -y install pcre-devel zlib-devel                    # 安装依赖
+wget http://nginx.org/d">
 
 
 
@@ -326,18 +350,17 @@
       
 
       
-        <h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><a id="more"></a>
-<pre><code># 安装其他依赖软件
+        <h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><pre><code># 安装其他依赖软件
 yum -y install tomcat unzip
 
 # 让 tomcat 开机自启动
 systemctl enable tomcat
 
 # 安装 Nginx，示例安装的是 1.10.1 版本
-yum -y install pcre-devel zlib-devel
-wget http://nginx.org/download/nginx-1.10.1.tar.gz
-tar nginx-1.10.1.tar.gz
-cd nginx-1.10.1
+yum -y install pcre-devel zlib-devel                    # 安装依赖
+wget http://nginx.org/download/nginx-1.10.1.tar.gz      # 下载
+tar nginx-1.10.1.tar.gz                                 # 解压
+cd nginx-1.10.1                                         # 进入目录
 ./configure --prefix=/usr/local/nginx &amp;&amp; make &amp;&amp; make install 
 
 # 启动 Nginx
@@ -349,10 +372,9 @@ vim /etc/rc.local
     /usr/local/nginx/sbin/nginx
 
 # 安装 Redis
-    下载源码：
-            wget http://download.redis.io/releases/redis-3.2.1.tar.gz
-    解压
-    cd 进入解压得到的目录
+    wget http://download.redis.io/releases/redis-3.2.1.tar.gz  # 下载
+    tar -xzf redis-3.2.1.tar.gz                   # 解压
+    cd redis-3.2.1                                # 进入目录
     make &amp;&amp; make PREFIX=/usr/local/redis install  # 指定安装路径
     cp redis.conf /usr/local/redis                # 复制配置文件
     vim /usr/local/redis/redis.conf               # 修改 daemonize yes 开启后台运行 Redis
@@ -442,7 +464,7 @@ iptables -P OUTPUT ACCEPT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT        # 可选
-service iptables save       # 保存到脚本文件 /etc/sysconfig/iptables
+service iptables save       # 命令不存在则：yum install iptables-services
 
 # 访问
 ip addr         # 获取虚拟机的IP地址

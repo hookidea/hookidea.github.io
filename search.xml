@@ -6,18 +6,17 @@
     <entry>
       <title><![CDATA[RAP - 安装与使用]]></title>
       <url>http://hookidea.github.io/2016/07/05/RAP-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
-      <content type="html"><![CDATA[<h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><a id="more"></a>
-<pre><code># 安装其他依赖软件
+      <content type="html"><![CDATA[<h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><pre><code># 安装其他依赖软件
 yum -y install tomcat unzip
 
 # 让 tomcat 开机自启动
 systemctl enable tomcat
 
 # 安装 Nginx，示例安装的是 1.10.1 版本
-yum -y install pcre-devel zlib-devel
-wget http://nginx.org/download/nginx-1.10.1.tar.gz
-tar nginx-1.10.1.tar.gz
-cd nginx-1.10.1
+yum -y install pcre-devel zlib-devel                    # 安装依赖
+wget http://nginx.org/download/nginx-1.10.1.tar.gz      # 下载
+tar nginx-1.10.1.tar.gz                                 # 解压
+cd nginx-1.10.1                                         # 进入目录
 ./configure --prefix=/usr/local/nginx &amp;&amp; make &amp;&amp; make install 
 
 # 启动 Nginx
@@ -29,10 +28,9 @@ vim /etc/rc.local
     /usr/local/nginx/sbin/nginx
 
 # 安装 Redis
-    下载源码：
-            wget http://download.redis.io/releases/redis-3.2.1.tar.gz
-    解压
-    cd 进入解压得到的目录
+    wget http://download.redis.io/releases/redis-3.2.1.tar.gz  # 下载
+    tar -xzf redis-3.2.1.tar.gz                   # 解压
+    cd redis-3.2.1                                # 进入目录
     make &amp;&amp; make PREFIX=/usr/local/redis install  # 指定安装路径
     cp redis.conf /usr/local/redis                # 复制配置文件
     vim /usr/local/redis/redis.conf               # 修改 daemonize yes 开启后台运行 Redis
@@ -122,7 +120,7 @@ iptables -P OUTPUT ACCEPT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT        # 可选
-service iptables save       # 保存到脚本文件 /etc/sysconfig/iptables
+service iptables save       # 命令不存在则：yum install iptables-services
 
 # 访问
 ip addr         # 获取虚拟机的IP地址
