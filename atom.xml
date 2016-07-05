@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hookidea.github.io/"/>
-  <updated>2016-07-05T09:50:57.186Z</updated>
+  <updated>2016-07-05T09:54:08.057Z</updated>
   <id>http://hookidea.github.io/</id>
   
   <author>
@@ -20,10 +20,10 @@
     <link href="http://hookidea.github.io/2016/07/05/RAP-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
     <id>http://hookidea.github.io/2016/07/05/RAP-的安装与使用/</id>
     <published>2016-07-05T09:29:51.000Z</published>
-    <updated>2016-07-05T09:50:57.186Z</updated>
+    <updated>2016-07-05T09:54:08.057Z</updated>
     
-    <content type="html">&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 安装其他依赖软件
+    <content type="html">&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;pre&gt;&lt;code&gt;# 安装其他依赖软件
 yum -y install nginx tomcat unzip
 
 # 让 tomcat 开机自启动
@@ -203,9 +203,7 @@ Shift + Tab     # 位于参数编辑时，自动切换到上一位置
     
     <summary type="html">
     
-      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 安装其他依赖软件
-yum -y install nginx tomcat unzip
+      &lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;
     
     </summary>
     
