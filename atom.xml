@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hookidea.github.io/"/>
-  <updated>2016-05-18T00:06:50.000Z</updated>
+  <updated>2016-07-05T09:47:15.354Z</updated>
   <id>http://hookidea.github.io/</id>
   
   <author>
@@ -16,96 +16,14 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>CentOS 下使用 Yum 安装 Lamp 环境</title>
-    <link href="http://hookidea.github.io/2016/05/18/CentOS-LAMP/"/>
-    <id>http://hookidea.github.io/2016/05/18/CentOS-LAMP/</id>
-    <published>2016-05-17T23:29:51.000Z</published>
-    <updated>2016-05-18T00:06:50.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;安装Apache&quot;&gt;&lt;a href=&quot;#安装Apache&quot; class=&quot;headerlink&quot; title=&quot;安装Apache&quot;&gt;&lt;/a&gt;安装Apache&lt;/h2&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum -y install httpd          &lt;span class=&quot;comment&quot;&gt;# 安装 Apache&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;chkconfig httpd on            &lt;span class=&quot;comment&quot;&gt;# 设置开机自启动&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;service httpd start           &lt;span class=&quot;comment&quot;&gt;# 启动 Apache&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql     &lt;span class=&quot;comment&quot;&gt;# 安装常用模块&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;安装数据库&quot;&gt;&lt;a href=&quot;#安装数据库&quot; class=&quot;headerlink&quot; title=&quot;安装数据库&quot;&gt;&lt;/a&gt;安装数据库&lt;/h2&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum -y install mysql mysql-server mysql-devel    &lt;span class=&quot;comment&quot;&gt;# 安装 MySQL&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;chkconfig mysqld on                              &lt;span class=&quot;comment&quot;&gt;# 设置开机自启动&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;service mysqld start                             &lt;span class=&quot;comment&quot;&gt;# 启动 MySQL&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/usr/bin/mysql_secure_installation               &lt;span class=&quot;comment&quot;&gt;# 运行配置向导，如设置 ROOT 密码等&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;安装PHP&quot;&gt;&lt;a href=&quot;#安装PHP&quot; class=&quot;headerlink&quot; title=&quot;安装PHP&quot;&gt;&lt;/a&gt;安装PHP&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;检查当前安装的PHP包：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;yum list installed | grep php
-
-如果有安装的PHP包，删除他们：
-
-yum remove php.x86_64 php-cli.x86_64 php-common.x86_64 php-gd.x86_64 php-ldap.x86_64 php-mbstring.x86_64 php-mcrypt.x86_64 php-mysql.x86_64 php-pdo.x86_64
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;安装新版PHP所在的源：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Centos 5.X：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;rpm -Uvh http:#mirror.webtatic.com/yum/el5/latest.rpm
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;CentOs 6.x：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;rpm -Uvh http:#mirror.webtatic.com/yum/el6/latest.rpm
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;CentOs 7.X：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;rpm -Uvh https:#mirror.webtatic.com/yum/el7/epel-release.rpm
-rpm -Uvh https:#mirror.webtatic.com/yum/el7/webtatic-release.rpm
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;开始安装PHP：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;PHP5.5：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;yum install php55w.x86_64 php55w-cli.x86_64 php55w-common.x86_64 php55w-gd.x86_64 php55w-ldap.x86_64 php55w-mbstring.x86_64 php55w-mcrypt.x86_64 php55w-mysql.x86_64 php55w-pdo.x86_64
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;PHP5.6：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;yum install php56w.x86_64 php56w-cli.x86_64 php56w-common.x86_64 php56w-gd.x86_64 php56w-ldap.x86_64 php56w-mbstring.x86_64 php56w-mcrypt.x86_64 php56w-mysql.x86_64 php56w-pdo.x86_64
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;PHP7.0：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;yum install php70w.x86_64 php70w-cli.x86_64 php70w-common.x86_64 php70w-gd.x86_64 php70w-ldap.x86_64 php70w-mbstring.x86_64 php70w-mcrypt.x86_64 php70w-mysql.x86_64 php70w-pdo.x86_64
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;安装PHP-FPM&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;PHP5.5：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;yum install php55w-fpm 
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;PHP5.6：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;yum install php56w-fpm 
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;PHP7.0：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;yum install php70w-fpm
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;安装完成之后，如何安装 PHP 模块（注意：以上安装已经安装常用模块，无需重新安装）：&lt;/p&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum install php55w-gd.x86_64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum install php56w-gd.x86_64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum install php70w-gd.x86_64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum install php70w-mbstring.x86_64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.....&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 以此类推&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;安装完成，一般可直接投入使用&quot;&gt;&lt;a href=&quot;#安装完成，一般可直接投入使用&quot; class=&quot;headerlink&quot; title=&quot;安装完成，一般可直接投入使用&quot;&gt;&lt;/a&gt;安装完成，一般可直接投入使用&lt;/h2&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;安装Apache&quot;&gt;&lt;a href=&quot;#安装Apache&quot; class=&quot;headerlink&quot; title=&quot;安装Apache&quot;&gt;&lt;/a&gt;安装Apache&lt;/h2&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum -y install httpd          &lt;span class=&quot;comment&quot;&gt;# 安装 Apache&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;chkconfig httpd on            &lt;span class=&quot;comment&quot;&gt;# 设置开机自启动&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;service httpd start           &lt;span class=&quot;comment&quot;&gt;# 启动 Apache&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql     &lt;span class=&quot;comment&quot;&gt;# 安装常用模块&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="CentOS" scheme="http://hookidea.github.io/tags/CentOS/"/>
-    
-      <category term="PHP" scheme="http://hookidea.github.io/tags/PHP/"/>
-    
-      <category term="Lamp" scheme="http://hookidea.github.io/tags/Lamp/"/>
-    
-      <category term="Apache" scheme="http://hookidea.github.io/tags/Apache/"/>
-    
-      <category term="MySQL" scheme="http://hookidea.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
     <title>RAP - 安装与使用</title>
-    <link href="http://hookidea.github.io/2016/05/18/RAP-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
-    <id>http://hookidea.github.io/2016/05/18/RAP-的安装与使用/</id>
-    <published>2016-05-17T23:29:51.000Z</published>
-    <updated>2016-07-05T09:45:24.827Z</updated>
+    <link href="http://hookidea.github.io/2016/07/05/RAP-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+    <id>http://hookidea.github.io/2016/07/05/RAP-的安装与使用/</id>
+    <published>2016-07-05T09:29:51.000Z</published>
+    <updated>2016-07-05T09:47:15.354Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 安装其他依赖软件
+    <content type="html">&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 安装其他依赖软件
 yum -y install nginx tomcat unzip
 
 # 让 tomcat 开机自启动
@@ -285,15 +203,97 @@ Shift + Tab     # 位于参数编辑时，自动切换到上一位置
     
     <summary type="html">
     
-      &lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 安装其他依赖软件
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 安装其他依赖软件
 yum -y install nginx tomcat unzip
-
-# 让 tomcat 开机自启动
     
     </summary>
     
     
       <category term="RAP" scheme="http://hookidea.github.io/tags/RAP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS 下使用 Yum 安装 Lamp 环境</title>
+    <link href="http://hookidea.github.io/2016/05/18/CentOS-LAMP/"/>
+    <id>http://hookidea.github.io/2016/05/18/CentOS-LAMP/</id>
+    <published>2016-05-17T23:29:51.000Z</published>
+    <updated>2016-05-18T00:06:50.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;安装Apache&quot;&gt;&lt;a href=&quot;#安装Apache&quot; class=&quot;headerlink&quot; title=&quot;安装Apache&quot;&gt;&lt;/a&gt;安装Apache&lt;/h2&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum -y install httpd          &lt;span class=&quot;comment&quot;&gt;# 安装 Apache&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;chkconfig httpd on            &lt;span class=&quot;comment&quot;&gt;# 设置开机自启动&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;service httpd start           &lt;span class=&quot;comment&quot;&gt;# 启动 Apache&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql     &lt;span class=&quot;comment&quot;&gt;# 安装常用模块&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;安装数据库&quot;&gt;&lt;a href=&quot;#安装数据库&quot; class=&quot;headerlink&quot; title=&quot;安装数据库&quot;&gt;&lt;/a&gt;安装数据库&lt;/h2&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum -y install mysql mysql-server mysql-devel    &lt;span class=&quot;comment&quot;&gt;# 安装 MySQL&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;chkconfig mysqld on                              &lt;span class=&quot;comment&quot;&gt;# 设置开机自启动&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;service mysqld start                             &lt;span class=&quot;comment&quot;&gt;# 启动 MySQL&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/usr/bin/mysql_secure_installation               &lt;span class=&quot;comment&quot;&gt;# 运行配置向导，如设置 ROOT 密码等&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;安装PHP&quot;&gt;&lt;a href=&quot;#安装PHP&quot; class=&quot;headerlink&quot; title=&quot;安装PHP&quot;&gt;&lt;/a&gt;安装PHP&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;检查当前安装的PHP包：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum list installed | grep php
+
+如果有安装的PHP包，删除他们：
+
+yum remove php.x86_64 php-cli.x86_64 php-common.x86_64 php-gd.x86_64 php-ldap.x86_64 php-mbstring.x86_64 php-mcrypt.x86_64 php-mysql.x86_64 php-pdo.x86_64
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安装新版PHP所在的源：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Centos 5.X：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;rpm -Uvh http:#mirror.webtatic.com/yum/el5/latest.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;CentOs 6.x：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;rpm -Uvh http:#mirror.webtatic.com/yum/el6/latest.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;CentOs 7.X：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;rpm -Uvh https:#mirror.webtatic.com/yum/el7/epel-release.rpm
+rpm -Uvh https:#mirror.webtatic.com/yum/el7/webtatic-release.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;开始安装PHP：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PHP5.5：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum install php55w.x86_64 php55w-cli.x86_64 php55w-common.x86_64 php55w-gd.x86_64 php55w-ldap.x86_64 php55w-mbstring.x86_64 php55w-mcrypt.x86_64 php55w-mysql.x86_64 php55w-pdo.x86_64
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;PHP5.6：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum install php56w.x86_64 php56w-cli.x86_64 php56w-common.x86_64 php56w-gd.x86_64 php56w-ldap.x86_64 php56w-mbstring.x86_64 php56w-mcrypt.x86_64 php56w-mysql.x86_64 php56w-pdo.x86_64
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;PHP7.0：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum install php70w.x86_64 php70w-cli.x86_64 php70w-common.x86_64 php70w-gd.x86_64 php70w-ldap.x86_64 php70w-mbstring.x86_64 php70w-mcrypt.x86_64 php70w-mysql.x86_64 php70w-pdo.x86_64
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安装PHP-FPM&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PHP5.5：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum install php55w-fpm 
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;PHP5.6：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum install php56w-fpm 
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;PHP7.0：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum install php70w-fpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安装完成之后，如何安装 PHP 模块（注意：以上安装已经安装常用模块，无需重新安装）：&lt;/p&gt;
+&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum install php55w-gd.x86_64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum install php56w-gd.x86_64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum install php70w-gd.x86_64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum install php70w-mbstring.x86_64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.....&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 以此类推&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;安装完成，一般可直接投入使用&quot;&gt;&lt;a href=&quot;#安装完成，一般可直接投入使用&quot; class=&quot;headerlink&quot; title=&quot;安装完成，一般可直接投入使用&quot;&gt;&lt;/a&gt;安装完成，一般可直接投入使用&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;安装Apache&quot;&gt;&lt;a href=&quot;#安装Apache&quot; class=&quot;headerlink&quot; title=&quot;安装Apache&quot;&gt;&lt;/a&gt;安装Apache&lt;/h2&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum -y install httpd          &lt;span class=&quot;comment&quot;&gt;# 安装 Apache&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;chkconfig httpd on            &lt;span class=&quot;comment&quot;&gt;# 设置开机自启动&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;service httpd start           &lt;span class=&quot;comment&quot;&gt;# 启动 Apache&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql     &lt;span class=&quot;comment&quot;&gt;# 安装常用模块&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="CentOS" scheme="http://hookidea.github.io/tags/CentOS/"/>
+    
+      <category term="PHP" scheme="http://hookidea.github.io/tags/PHP/"/>
+    
+      <category term="Lamp" scheme="http://hookidea.github.io/tags/Lamp/"/>
+    
+      <category term="Apache" scheme="http://hookidea.github.io/tags/Apache/"/>
+    
+      <category term="MySQL" scheme="http://hookidea.github.io/tags/MySQL/"/>
     
   </entry>
   
