@@ -267,8 +267,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/05/RAP-的安装与使用/" itemprop="url">
-                  未命名
+                <a class="post-title-link" href="/2016/05/18/CentOS-LAMP/" itemprop="url">
+                  CentOS 下使用 Yum 安装 Lamp 环境
                 </a>
               
             
@@ -281,8 +281,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-05T17:41:56+08:00" content="2016-07-05">
-              2016-07-05
+            <time itemprop="dateCreated" datetime="2016-05-18T07:29:51+08:00" content="2016-05-18">
+              2016-05-18
             </time>
           </span>
 
@@ -292,8 +292,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/05/RAP-的安装与使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/05/RAP-的安装与使用/" itemprop="commentsCount"></span>
+                <a href="/2016/05/18/CentOS-LAMP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/18/CentOS-LAMP/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -303,7 +303,119 @@
 
           
           
-             <span id="/2016/07/05/RAP-的安装与使用/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2016/05/18/CentOS-LAMP/" class="leancloud_visitors" data-flag-title="CentOS 下使用 Yum 安装 Lamp 环境">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum -y install httpd          <span class="comment"># 安装 Apache</span></span><br><span class="line">chkconfig httpd on            <span class="comment"># 设置开机自启动</span></span><br><span class="line">service httpd start           <span class="comment"># 启动 Apache</span></span><br><span class="line">yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql     <span class="comment"># 安装常用模块</span></span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/18/CentOS-LAMP/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/18/RAP-的安装与使用/" itemprop="url">
+                  RAP - 安装与使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-18T07:29:51+08:00" content="2016-05-18">
+              2016-05-18
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/18/RAP-的安装与使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/18/RAP-的安装与使用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/05/18/RAP-的安装与使用/" class="leancloud_visitors" data-flag-title="RAP - 安装与使用">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -327,8 +439,7 @@
       
         
           
-            <p>[TOC]</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code># 安装其他依赖软件
+            <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code># 安装其他依赖软件
 yum -y install nginx tomcat unzip
 
 # 让 tomcat 开机自启动
@@ -506,118 +617,6 @@ Tab             # 位于参数编辑时，自动切换到下一位置
 Shift + Tab     # 位于参数编辑时，自动切换到上一位置
 </code></pre>
           
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/18/CentOS-LAMP/" itemprop="url">
-                  CentOS 下使用 Yum 安装 Lamp 环境
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-18T07:29:51+08:00" content="2016-05-18">
-              2016-05-18
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/18/CentOS-LAMP/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/18/CentOS-LAMP/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/05/18/CentOS-LAMP/" class="leancloud_visitors" data-flag-title="CentOS 下使用 Yum 安装 Lamp 环境">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum -y install httpd          <span class="comment"># 安装 Apache</span></span><br><span class="line">chkconfig httpd on            <span class="comment"># 设置开机自启动</span></span><br><span class="line">service httpd start           <span class="comment"># 启动 Apache</span></span><br><span class="line">yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql     <span class="comment"># 安装常用模块</span></span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/18/CentOS-LAMP/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
         
       
     </div>
