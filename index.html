@@ -443,64 +443,12 @@
 
       
         
-          
-            <a id="more"></a>
-<h2 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum -y install httpd          <span class="comment"># 安装 Apache</span></span><br><span class="line">chkconfig httpd on            <span class="comment"># 设置开机自启动</span></span><br><span class="line">service httpd start           <span class="comment"># 启动 Apache</span></span><br><span class="line">yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql     <span class="comment"># 安装常用模块</span></span><br></pre></td></tr></table></figure>
-<h2 id="安装数据库"><a href="#安装数据库" class="headerlink" title="安装数据库"></a>安装数据库</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum -y install mysql mysql-server mysql-devel    <span class="comment"># 安装 MySQL</span></span><br><span class="line">chkconfig mysqld on                              <span class="comment"># 设置开机自启动</span></span><br><span class="line">service mysqld start                             <span class="comment"># 启动 MySQL</span></span><br><span class="line">/usr/bin/mysql_secure_installation               <span class="comment"># 运行配置向导，如设置 ROOT 密码等</span></span><br></pre></td></tr></table></figure>
-<h2 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h2><ul>
-<li><p>检查当前安装的PHP包：</p>
-<pre><code>yum list installed | grep php
-
-如果有安装的PHP包，删除他们：
-
-yum remove php.x86_64 php-cli.x86_64 php-common.x86_64 php-gd.x86_64 php-ldap.x86_64 php-mbstring.x86_64 php-mcrypt.x86_64 php-mysql.x86_64 php-pdo.x86_64
-</code></pre></li>
-<li><p>安装新版PHP所在的源：</p>
-<ul>
-<li><p>Centos 5.X：</p>
-<pre><code>rpm -Uvh http:#mirror.webtatic.com/yum/el5/latest.rpm
-</code></pre></li>
-<li><p>CentOs 6.x：</p>
-<pre><code>rpm -Uvh http:#mirror.webtatic.com/yum/el6/latest.rpm
-</code></pre></li>
-<li><p>CentOs 7.X：</p>
-<pre><code>rpm -Uvh https:#mirror.webtatic.com/yum/el7/epel-release.rpm
-rpm -Uvh https:#mirror.webtatic.com/yum/el7/webtatic-release.rpm
-</code></pre></li>
-</ul>
-</li>
-<li><p>开始安装PHP：</p>
-<ul>
-<li><p>PHP5.5：</p>
-<pre><code>yum install php55w.x86_64 php55w-cli.x86_64 php55w-common.x86_64 php55w-gd.x86_64 php55w-ldap.x86_64 php55w-mbstring.x86_64 php55w-mcrypt.x86_64 php55w-mysql.x86_64 php55w-pdo.x86_64
-</code></pre></li>
-<li><p>PHP5.6：</p>
-<pre><code>yum install php56w.x86_64 php56w-cli.x86_64 php56w-common.x86_64 php56w-gd.x86_64 php56w-ldap.x86_64 php56w-mbstring.x86_64 php56w-mcrypt.x86_64 php56w-mysql.x86_64 php56w-pdo.x86_64
-</code></pre></li>
-<li><p>PHP7.0：</p>
-<pre><code>yum install php70w.x86_64 php70w-cli.x86_64 php70w-common.x86_64 php70w-gd.x86_64 php70w-ldap.x86_64 php70w-mbstring.x86_64 php70w-mcrypt.x86_64 php70w-mysql.x86_64 php70w-pdo.x86_64
-</code></pre></li>
-</ul>
-</li>
-<li><p>安装PHP-FPM</p>
-<ul>
-<li><p>PHP5.5：</p>
-<pre><code>yum install php55w-fpm 
-</code></pre></li>
-<li><p>PHP5.6：</p>
-<pre><code>yum install php56w-fpm 
-</code></pre></li>
-<li><p>PHP7.0：</p>
-<pre><code>yum install php70w-fpm
-</code></pre></li>
-</ul>
-</li>
-<li><p>安装完成之后，如何安装 PHP 模块（注意：以上安装已经安装常用模块，无需重新安装）：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install php55w-gd.x86_64</span><br><span class="line">yum install php56w-gd.x86_64</span><br><span class="line">yum install php70w-gd.x86_64</span><br><span class="line">yum install php70w-mbstring.x86_64</span><br><span class="line">.....</span><br><span class="line"><span class="comment"># 以此类推</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="安装完成，一般可直接投入使用"><a href="#安装完成，一般可直接投入使用" class="headerlink" title="安装完成，一般可直接投入使用"></a>安装完成，一般可直接投入使用</h2>
-          
+          <h2 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h2>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/18/CentOS-LAMP/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
