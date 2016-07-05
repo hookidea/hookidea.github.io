@@ -1,0 +1,1109 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link href="http://fonts.useso.com/css?family=Lobster Two:300,400,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="RAP," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hookidea" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="[TOC]
+安装# 安装其他依赖软件
+yum -y install nginx tomcat unzip
+
+# 让 tomcat 开机自启动
+systemctl enable tomcat
+
+# 安装 Nginx
+yum -y install pcre-devel zlib-devel
+wget ***
+tar ***
+cd ***
+./configure --prefix=/usr/local/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RAP 的安装与使用">
+<meta property="og:url" content="http://hookidea.github.io/2016/07/05/RAP-的安装与使用/index.html">
+<meta property="og:site_name" content="Hookidea">
+<meta property="og:description" content="[TOC]
+安装# 安装其他依赖软件
+yum -y install nginx tomcat unzip
+
+# 让 tomcat 开机自启动
+systemctl enable tomcat
+
+# 安装 Nginx
+yum -y install pcre-devel zlib-devel
+wget ***
+tar ***
+cd ***
+./configure --prefix=/usr/local/">
+<meta property="og:updated_time" content="2016-07-05T00:22:35.886Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RAP 的安装与使用">
+<meta name="twitter:description" content="[TOC]
+安装# 安装其他依赖软件
+yum -y install nginx tomcat unzip
+
+# 让 tomcat 开机自启动
+systemctl enable tomcat
+
+# 安装 Nginx
+yum -y install pcre-devel zlib-devel
+wget ***
+tar ***
+cd ***
+./configure --prefix=/usr/local/">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6283200154031883000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> RAP 的安装与使用 | Hookidea </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a4ae6b9300335427ee38cc8a93034ae5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hookidea</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                RAP 的安装与使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-05T08:18:21+08:00" content="2016-07-05">
+              2016-07-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/05/RAP-的安装与使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/05/RAP-的安装与使用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/07/05/RAP-的安装与使用/" class="leancloud_visitors" data-flag-title="RAP 的安装与使用">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code># 安装其他依赖软件
+yum -y install nginx tomcat unzip
+
+# 让 tomcat 开机自启动
+systemctl enable tomcat
+
+# 安装 Nginx
+yum -y install pcre-devel zlib-devel
+wget ***
+tar ***
+cd ***
+./configure --prefix=/usr/local/nginx &amp;&amp; make &amp;&amp; make install 
+
+# 启动 Nginx
+/usr/local/nginx/sbin/nginx
+
+# 让 Nginx 自启动
+vim /etc/rc.local
+    # 添加
+    /usr/local/nginx/sbin/nginx
+
+# 安装 Redis
+    下载源码：
+            wget http://download.redis.io/releases/redis-3.2.1.tar.gz
+    解压
+    cd 进入解压得到的目录
+    make &amp;&amp; make PREFIX=/usr/local/redis install  # 指定安装路径
+    cp redis.conf /usr/local/redis                # 复制配置文件
+    vim /usr/local/redis/redis.conf
+        # 修改 daemonize yes 开启后台运行 Redis
+    /usr/local/redis/bin/redis-server /usr/local/redis/redis.conf         # 启动 redis
+    ***/redis                             # 连接 Reids
+    pkill redis-server                    # 停止 redis
+
+# 启动 Redis
+/usr/local/redis/bin/redis-server /usr/local/redis/redis.conf
+
+# 让 Redis 自启动
+vim /etc/rc.local
+    # 添加
+    /usr/local/redis/bin/redis-server /usr/local/redis/redis.conf
+
+# 安装 MySQL
+wget http://repo.mysql.com/yum/mysql-5.6-community/el/7/x86_64/mysql-community-release-el7-5.noarch.rpm
+rpm -vih mysql-community-release-el7-5.noarch.rpm
+yum install -y mysql-server
+
+# 下载war包
+wget http://rap.taobao.org/release/RAP-0.14.0-SNAPSHOT.war
+
+# 解压到ROOT目录，记住 ROOT 目录所在的路径
+unzip -x RAP-0.14.0-SNAPSHOT.war -d ROOT
+
+# 启动 MySQL + 开启自启动
+systemctl start mysqld
+systemctl enable mysqld
+
+# 配置 ROOT 密码及初始化
+mysql_secure_installation
+
+# 连接 MySQL
+mysql -uroot -p
+
+# 创建供RAP使用的数据库及用户
+create database rap_db default charset utf8 COLLATE utf8_general_ci;
+grant all on rap_db.* to &apos;rap&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;password&apos;;
+flush privileges;
+
+# 推出 MySQL 连接
+exit
+
+# 初始化数据库，输入刚才创建RAP用户的密码，上面是 password
+mysql -u rap -p rap_db &lt; ROOT/WEB-INF/classes/database/initialize.sql
+
+# 配置应用中数据库连接
+vi ROOT/WEB-INF/classes/config.properties 
+    # 修改为刚才创建的数据库用户名及密码
+    jdbc.username=rap
+    jdbc.password=password
+    # 其中redis配置可根据需求更改
+
+# 配置tomcat
+cp -rf ROOT /var/lib/tomcat/webapps
+chown -R tomcat. /var/lib/tomcat/webapps/ROOT
+
+# 重启tomcat
+systemctl restart tomcat
+
+# 配置nginx
+vim /usr/local/nginx/conf/nginx.conf
+    # 添加
+    server {
+        listen        80;
+        server_name   127.0.0.1;                    # 本机IP或者域名
+        access_log    /usr/local/nginx/logs/rap_access.log;
+        charset       utf-8;
+        autoindex     off;
+
+        location / {
+            proxy_pass   http://localhost:8080;
+
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        }
+    }
+
+# 配置防火墙，开放 80,8080 端口
+
+# 访问
+http://ip
+</code></pre><h2 id="RAP-的插件-rap-pluging-js"><a href="#RAP-的插件-rap-pluging-js" class="headerlink" title="RAP 的插件 rap.pluging.js"></a>RAP 的插件 rap.pluging.js</h2><ul>
+<li><p>作用：拦截 JS 的 AJAX 的请求，让其从 Mock 获取其自动生成数据</p>
+</li>
+<li><p>mode：当 <code>mode=0</code> 时，AJAX 不会从 Mock 获取其自动生成数据，而是变成校验模式，检验接口返回的数据（此时数据使用的不是 Mock 自动生成的数据，而是真实数据）是否符合接口定义的，通过查看浏览器的 <code>console</code> 查看校验结果。</p>
+<pre><code>http://rapapi.net/rap.pluging.js?projectId=577&amp;mode=0
+</code></pre></li>
+</ul>
+<h2 id="Mock-语法"><a href="#Mock-语法" class="headerlink" title="Mock 语法"></a>Mock 语法</h2><pre><code>文档：http://mockjs.com/0.1/#mock
+
+# 注意：必须点击右上角的 Mock 才能显示 Mock 数据规则，否则默认是不显示的
+@EMAIL                    # 自动生成一个合法的EMAIL
+
+&apos;string1|1-10&apos;: &apos;*&apos;,      # 字符串，重复1-10个
+&apos;string2|3&apos;: &apos;value&apos;,     # 字符串，固定重复3次
+
+&apos;number1|+1&apos;: 100,        # 数字，从100开始自增
+&apos;number2|1-100&apos;: 100,     # 数字，1-100的随机整数
+&apos;number3|1-100.1-10&apos;: 1,  # 数字，整数部分的“值”是1-100的随机整数，小数部分的“长度”是1-10
+&apos;number4|123.1-10&apos;: 1,    # 数字，整数部分的“值”是123，小数部分的“长度”是1-10
+&apos;number5|123.3&apos;: 1,       # 数字，整数部分的“值”是123，小数部分的“长度”是3
+&apos;number6|123.10&apos;: 1.123,  # 
+
+&apos;boolean1|1&apos;: true,       # true
+&apos;boolean2|1-2&apos;: true,     # false/true 的随机
+
+&apos;object1|2-4&apos;: {          # 对象的长度是 2-4，其项的值从下面随机选取
+    &apos;110000&apos;: &apos;北京市&apos;,   
+    &apos;120000&apos;: &apos;天津市&apos;,
+    &apos;130000&apos;: &apos;河北省&apos;,
+    &apos;140000&apos;: &apos;山西省&apos;
+},
+&apos;object2|2&apos;: {            # 对象的长度是 2，其项的值从下面随机选取
+    &apos;310000&apos;: &apos;上海市&apos;,
+    &apos;320000&apos;: &apos;江苏省&apos;,
+    &apos;330000&apos;: &apos;浙江省&apos;,
+    &apos;340000&apos;: &apos;安徽省&apos;
+},
+
+&apos;array1|1&apos;: [&apos;AMD&apos;, &apos;CMD&apos;, &apos;KMD&apos;, &apos;UMD&apos;],   # 随机选取一个值，注意：其生成的数据不是数组！！！
+&apos;array2|1-10&apos;: [&apos;Mock.js&apos;],     # 把所有项重复1-10次
+    如：
+        &apos;array2|1-3&apos;: [&apos;Mock.js&apos;, &apos;php&apos;] 则：、
+
+            &quot;array2&quot;: [
+                &quot;Mock.js&quot;,
+                &quot;php&quot;,
+                &quot;Mock.js&quot;,
+                &quot;php&quot;,
+                &quot;Mock.js&quot;,
+                &quot;php&quot;
+            ]
+&apos;array3|3&apos;: [&apos;Mock.js&apos;],        # 把所有项重复3次
+</code></pre><h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><pre><code>Alt + F         # 工作区搜索，候选列表出现时可通过 上、下、回车键操作
+Ctrl + Enter    # 位于参数编辑时，根据当前行的参数标识或参数名称自动补全
+Tab             # 位于参数编辑时，自动切换到下一位置
+Shift + Tab     # 位于参数编辑时，自动切换到上一位置
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RAP/" rel="tag">#RAP</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/18/CentOS-LAMP/" rel="next" title="CentOS 下使用 Yum 安装 Lamp 环境">
+                <i class="fa fa-chevron-left"></i> CentOS 下使用 Yum 安装 Lamp 环境
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/05/RAP-的安装与使用/"
+           data-title="RAP 的安装与使用" data-url="http://hookidea.github.io/2016/07/05/RAP-的安装与使用/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://o70oulhkd.bkt.clouddn.com/scottocat.jpg"
+               alt="Hookidea" />
+          <p class="site-author-name" itemprop="name">Hookidea</p>
+          <p class="site-description motion-element" itemprop="description">2016 coding happy.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="//weibo.com/hookidea" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="//github.com/hookidea" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAP-的插件-rap-pluging-js"><span class="nav-number">2.</span> <span class="nav-text">RAP 的插件 rap.pluging.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mock-语法"><span class="nav-number">3.</span> <span class="nav-text">Mock 语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷键"><span class="nav-number">4.</span> <span class="nav-text">快捷键</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hookidea</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.0/fastclick.min.js?v=1.0.0"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.5/jquery.lazyload.min.js?v=1.9.5"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.1/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"pioneer"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      <script src="//cdn.bootcss.com/UAParser.js/0.7.9/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("uFUWyoiWdrYhTEc524m4d0wn-gzGzoHsz", "baUKG2NSixfK2pymdMICEkH6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

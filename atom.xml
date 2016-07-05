@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hookidea</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://hookidea.github.io/"/>
+  <updated>2016-07-05T00:22:35.886Z</updated>
+  <id>http://hookidea.github.io/</id>
+  
+  <author>
+    <name>Hookidea</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RAP 的安装与使用</title>
+    <link href="http://hookidea.github.io/2016/07/05/RAP-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+    <id>http://hookidea.github.io/2016/07/05/RAP-的安装与使用/</id>
+    <published>2016-07-05T00:18:21.000Z</published>
+    <updated>2016-07-05T00:22:35.886Z</updated>
+    
+    <content type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 安装其他依赖软件
+yum -y install nginx tomcat unzip
+
+# 让 tomcat 开机自启动
+systemctl enable tomcat
+
+# 安装 Nginx
+yum -y install pcre-devel zlib-devel
+wget ***
+tar ***
+cd ***
+./configure --prefix=/usr/local/nginx &amp;amp;&amp;amp; make &amp;amp;&amp;amp; make install 
+
+# 启动 Nginx
+/usr/local/nginx/sbin/nginx
+
+# 让 Nginx 自启动
+vim /etc/rc.local
+    # 添加
+    /usr/local/nginx/sbin/nginx
+
+# 安装 Redis
+    下载源码：
+            wget http://download.redis.io/releases/redis-3.2.1.tar.gz
+    解压
+    cd 进入解压得到的目录
+    make &amp;amp;&amp;amp; make PREFIX=/usr/local/redis install  # 指定安装路径
+    cp redis.conf /usr/local/redis                # 复制配置文件
+    vim /usr/local/redis/redis.conf
+        # 修改 daemonize yes 开启后台运行 Redis
+    /usr/local/redis/bin/redis-server /usr/local/redis/redis.conf         # 启动 redis
+    ***/redis                             # 连接 Reids
+    pkill redis-server                    # 停止 redis
+
+# 启动 Redis
+/usr/local/redis/bin/redis-server /usr/local/redis/redis.conf
+
+# 让 Redis 自启动
+vim /etc/rc.local
+    # 添加
+    /usr/local/redis/bin/redis-server /usr/local/redis/redis.conf
+
+# 安装 MySQL
+wget http://repo.mysql.com/yum/mysql-5.6-community/el/7/x86_64/mysql-community-release-el7-5.noarch.rpm
+rpm -vih mysql-community-release-el7-5.noarch.rpm
+yum install -y mysql-server
+
+# 下载war包
+wget http://rap.taobao.org/release/RAP-0.14.0-SNAPSHOT.war
+
+# 解压到ROOT目录，记住 ROOT 目录所在的路径
+unzip -x RAP-0.14.0-SNAPSHOT.war -d ROOT
+
+# 启动 MySQL + 开启自启动
+systemctl start mysqld
+systemctl enable mysqld
+
+# 配置 ROOT 密码及初始化
+mysql_secure_installation
+
+# 连接 MySQL
+mysql -uroot -p
+
+# 创建供RAP使用的数据库及用户
+create database rap_db default charset utf8 COLLATE utf8_general_ci;
+grant all on rap_db.* to &amp;apos;rap&amp;apos;@&amp;apos;localhost&amp;apos; IDENTIFIED BY &amp;apos;password&amp;apos;;
+flush privileges;
+
+# 推出 MySQL 连接
+exit
+
+# 初始化数据库，输入刚才创建RAP用户的密码，上面是 password
+mysql -u rap -p rap_db &amp;lt; ROOT/WEB-INF/classes/database/initialize.sql
+
+# 配置应用中数据库连接
+vi ROOT/WEB-INF/classes/config.properties 
+    # 修改为刚才创建的数据库用户名及密码
+    jdbc.username=rap
+    jdbc.password=password
+    # 其中redis配置可根据需求更改
+
+# 配置tomcat
+cp -rf ROOT /var/lib/tomcat/webapps
+chown -R tomcat. /var/lib/tomcat/webapps/ROOT
+
+# 重启tomcat
+systemctl restart tomcat
+
+# 配置nginx
+vim /usr/local/nginx/conf/nginx.conf
+    # 添加
+    server {
+        listen        80;
+        server_name   127.0.0.1;                    # 本机IP或者域名
+        access_log    /usr/local/nginx/logs/rap_access.log;
+        charset       utf-8;
+        autoindex     off;
+
+        location / {
+            proxy_pass   http://localhost:8080;
+
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        }
+    }
+
+# 配置防火墙，开放 80,8080 端口
+
+# 访问
+http://ip
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;RAP-的插件-rap-pluging-js&quot;&gt;&lt;a href=&quot;#RAP-的插件-rap-pluging-js&quot; class=&quot;headerlink&quot; title=&quot;RAP 的插件 rap.pluging.js&quot;&gt;&lt;/a&gt;RAP 的插件 rap.pluging.js&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;作用：拦截 JS 的 AJAX 的请求，让其从 Mock 获取其自动生成数据&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;mode：当 &lt;code&gt;mode=0&lt;/code&gt; 时，AJAX 不会从 Mock 获取其自动生成数据，而是变成校验模式，检验接口返回的数据（此时数据使用的不是 Mock 自动生成的数据，而是真实数据）是否符合接口定义的，通过查看浏览器的 &lt;code&gt;console&lt;/code&gt; 查看校验结果。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;http://rapapi.net/rap.pluging.js?projectId=577&amp;amp;mode=0
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Mock-语法&quot;&gt;&lt;a href=&quot;#Mock-语法&quot; class=&quot;headerlink&quot; title=&quot;Mock 语法&quot;&gt;&lt;/a&gt;Mock 语法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;文档：http://mockjs.com/0.1/#mock
+
+# 注意：必须点击右上角的 Mock 才能显示 Mock 数据规则，否则默认是不显示的
+@EMAIL                    # 自动生成一个合法的EMAIL
+
+&amp;apos;string1|1-10&amp;apos;: &amp;apos;*&amp;apos;,      # 字符串，重复1-10个
+&amp;apos;string2|3&amp;apos;: &amp;apos;value&amp;apos;,     # 字符串，固定重复3次
+
+&amp;apos;number1|+1&amp;apos;: 100,        # 数字，从100开始自增
+&amp;apos;number2|1-100&amp;apos;: 100,     # 数字，1-100的随机整数
+&amp;apos;number3|1-100.1-10&amp;apos;: 1,  # 数字，整数部分的“值”是1-100的随机整数，小数部分的“长度”是1-10
+&amp;apos;number4|123.1-10&amp;apos;: 1,    # 数字，整数部分的“值”是123，小数部分的“长度”是1-10
+&amp;apos;number5|123.3&amp;apos;: 1,       # 数字，整数部分的“值”是123，小数部分的“长度”是3
+&amp;apos;number6|123.10&amp;apos;: 1.123,  # 
+
+&amp;apos;boolean1|1&amp;apos;: true,       # true
+&amp;apos;boolean2|1-2&amp;apos;: true,     # false/true 的随机
+
+&amp;apos;object1|2-4&amp;apos;: {          # 对象的长度是 2-4，其项的值从下面随机选取
+    &amp;apos;110000&amp;apos;: &amp;apos;北京市&amp;apos;,   
+    &amp;apos;120000&amp;apos;: &amp;apos;天津市&amp;apos;,
+    &amp;apos;130000&amp;apos;: &amp;apos;河北省&amp;apos;,
+    &amp;apos;140000&amp;apos;: &amp;apos;山西省&amp;apos;
+},
+&amp;apos;object2|2&amp;apos;: {            # 对象的长度是 2，其项的值从下面随机选取
+    &amp;apos;310000&amp;apos;: &amp;apos;上海市&amp;apos;,
+    &amp;apos;320000&amp;apos;: &amp;apos;江苏省&amp;apos;,
+    &amp;apos;330000&amp;apos;: &amp;apos;浙江省&amp;apos;,
+    &amp;apos;340000&amp;apos;: &amp;apos;安徽省&amp;apos;
+},
+
+&amp;apos;array1|1&amp;apos;: [&amp;apos;AMD&amp;apos;, &amp;apos;CMD&amp;apos;, &amp;apos;KMD&amp;apos;, &amp;apos;UMD&amp;apos;],   # 随机选取一个值，注意：其生成的数据不是数组！！！
+&amp;apos;array2|1-10&amp;apos;: [&amp;apos;Mock.js&amp;apos;],     # 把所有项重复1-10次
+    如：
+        &amp;apos;array2|1-3&amp;apos;: [&amp;apos;Mock.js&amp;apos;, &amp;apos;php&amp;apos;] 则：、
+
+            &amp;quot;array2&amp;quot;: [
+                &amp;quot;Mock.js&amp;quot;,
+                &amp;quot;php&amp;quot;,
+                &amp;quot;Mock.js&amp;quot;,
+                &amp;quot;php&amp;quot;,
+                &amp;quot;Mock.js&amp;quot;,
+                &amp;quot;php&amp;quot;
+            ]
+&amp;apos;array3|3&amp;apos;: [&amp;apos;Mock.js&amp;apos;],        # 把所有项重复3次
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;快捷键&quot;&gt;&lt;a href=&quot;#快捷键&quot; class=&quot;headerlink&quot; title=&quot;快捷键&quot;&gt;&lt;/a&gt;快捷键&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;Alt + F         # 工作区搜索，候选列表出现时可通过 上、下、回车键操作
+Ctrl + Enter    # 位于参数编辑时，根据当前行的参数标识或参数名称自动补全
+Tab             # 位于参数编辑时，自动切换到下一位置
+Shift + Tab     # 位于参数编辑时，自动切换到上一位置
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 安装其他依赖软件
+yum -y install nginx tomcat unzip
+
+# 让
+    
+    </summary>
+    
+    
+      <category term="RAP" scheme="http://hookidea.github.io/tags/RAP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS 下使用 Yum 安装 Lamp 环境</title>
+    <link href="http://hookidea.github.io/2016/05/18/CentOS-LAMP/"/>
+    <id>http://hookidea.github.io/2016/05/18/CentOS-LAMP/</id>
+    <published>2016-05-17T23:29:51.000Z</published>
+    <updated>2016-05-18T00:06:50.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;安装Apache&quot;&gt;&lt;a href=&quot;#安装Apache&quot; class=&quot;headerlink&quot; title=&quot;安装Apache&quot;&gt;&lt;/a&gt;安装Apache&lt;/h2&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum -y install httpd          &lt;span class=&quot;comment&quot;&gt;# 安装 Apache&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;chkconfig httpd on            &lt;span class=&quot;comment&quot;&gt;# 设置开机自启动&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;service httpd start           &lt;span class=&quot;comment&quot;&gt;# 启动 Apache&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql     &lt;span class=&quot;comment&quot;&gt;# 安装常用模块&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;安装数据库&quot;&gt;&lt;a href=&quot;#安装数据库&quot; class=&quot;headerlink&quot; title=&quot;安装数据库&quot;&gt;&lt;/a&gt;安装数据库&lt;/h2&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum -y install mysql mysql-server mysql-devel    &lt;span class=&quot;comment&quot;&gt;# 安装 MySQL&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;chkconfig mysqld on                              &lt;span class=&quot;comment&quot;&gt;# 设置开机自启动&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;service mysqld start                             &lt;span class=&quot;comment&quot;&gt;# 启动 MySQL&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/usr/bin/mysql_secure_installation               &lt;span class=&quot;comment&quot;&gt;# 运行配置向导，如设置 ROOT 密码等&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;安装PHP&quot;&gt;&lt;a href=&quot;#安装PHP&quot; class=&quot;headerlink&quot; title=&quot;安装PHP&quot;&gt;&lt;/a&gt;安装PHP&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;检查当前安装的PHP包：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum list installed | grep php
+
+如果有安装的PHP包，删除他们：
+
+yum remove php.x86_64 php-cli.x86_64 php-common.x86_64 php-gd.x86_64 php-ldap.x86_64 php-mbstring.x86_64 php-mcrypt.x86_64 php-mysql.x86_64 php-pdo.x86_64
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安装新版PHP所在的源：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Centos 5.X：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;rpm -Uvh http:#mirror.webtatic.com/yum/el5/latest.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;CentOs 6.x：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;rpm -Uvh http:#mirror.webtatic.com/yum/el6/latest.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;CentOs 7.X：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;rpm -Uvh https:#mirror.webtatic.com/yum/el7/epel-release.rpm
+rpm -Uvh https:#mirror.webtatic.com/yum/el7/webtatic-release.rpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;开始安装PHP：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PHP5.5：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum install php55w.x86_64 php55w-cli.x86_64 php55w-common.x86_64 php55w-gd.x86_64 php55w-ldap.x86_64 php55w-mbstring.x86_64 php55w-mcrypt.x86_64 php55w-mysql.x86_64 php55w-pdo.x86_64
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;PHP5.6：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum install php56w.x86_64 php56w-cli.x86_64 php56w-common.x86_64 php56w-gd.x86_64 php56w-ldap.x86_64 php56w-mbstring.x86_64 php56w-mcrypt.x86_64 php56w-mysql.x86_64 php56w-pdo.x86_64
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;PHP7.0：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum install php70w.x86_64 php70w-cli.x86_64 php70w-common.x86_64 php70w-gd.x86_64 php70w-ldap.x86_64 php70w-mbstring.x86_64 php70w-mcrypt.x86_64 php70w-mysql.x86_64 php70w-pdo.x86_64
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安装PHP-FPM&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PHP5.5：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum install php55w-fpm 
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;PHP5.6：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum install php56w-fpm 
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;PHP7.0：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum install php70w-fpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安装完成之后，如何安装 PHP 模块（注意：以上安装已经安装常用模块，无需重新安装）：&lt;/p&gt;
+&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum install php55w-gd.x86_64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum install php56w-gd.x86_64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum install php70w-gd.x86_64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum install php70w-mbstring.x86_64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.....&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 以此类推&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;安装完成，一般可直接投入使用&quot;&gt;&lt;a href=&quot;#安装完成，一般可直接投入使用&quot; class=&quot;headerlink&quot; title=&quot;安装完成，一般可直接投入使用&quot;&gt;&lt;/a&gt;安装完成，一般可直接投入使用&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;安装Apache&quot;&gt;&lt;a href=&quot;#安装Apache&quot; class=&quot;headerlink&quot; title=&quot;安装Apache&quot;&gt;&lt;/a&gt;安装Apache&lt;/h2&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum -y install httpd          &lt;span class=&quot;comment&quot;&gt;# 安装 Apache&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;chkconfig httpd on            &lt;span class=&quot;comment&quot;&gt;# 设置开机自启动&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;service httpd start           &lt;span class=&quot;comment&quot;&gt;# 启动 Apache&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql     &lt;span class=&quot;comment&quot;&gt;# 安装常用模块&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="CentOS" scheme="http://hookidea.github.io/tags/CentOS/"/>
+    
+      <category term="PHP" scheme="http://hookidea.github.io/tags/PHP/"/>
+    
+      <category term="Lamp" scheme="http://hookidea.github.io/tags/Lamp/"/>
+    
+      <category term="Apache" scheme="http://hookidea.github.io/tags/Apache/"/>
+    
+      <category term="MySQL" scheme="http://hookidea.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+</feed>
