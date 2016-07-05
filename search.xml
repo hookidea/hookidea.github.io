@@ -6,7 +6,7 @@
     <entry>
       <title><![CDATA[RAP - 安装与使用]]></title>
       <url>http://hookidea.github.io/2016/07/05/RAP-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
-      <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><a id="more"></a>
+      <content type="html"><![CDATA[<h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><a id="more"></a>
 <pre><code># 安装其他依赖软件
 yum -y install nginx tomcat unzip
 
@@ -189,8 +189,8 @@ Shift + Tab     # 位于参数编辑时，自动切换到上一位置
     <entry>
       <title><![CDATA[CentOS 下使用 Yum 安装 Lamp 环境]]></title>
       <url>http://hookidea.github.io/2016/05/18/CentOS-LAMP/</url>
-      <content type="html"><![CDATA[<h2 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum -y install httpd          <span class="comment"># 安装 Apache</span></span><br><span class="line">chkconfig httpd on            <span class="comment"># 设置开机自启动</span></span><br><span class="line">service httpd start           <span class="comment"># 启动 Apache</span></span><br><span class="line">yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql     <span class="comment"># 安装常用模块</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a>
+      <content type="html"><![CDATA[<h2 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h2><a id="more"></a>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum -y install httpd          <span class="comment"># 安装 Apache</span></span><br><span class="line">chkconfig httpd on            <span class="comment"># 设置开机自启动</span></span><br><span class="line">service httpd start           <span class="comment"># 启动 Apache</span></span><br><span class="line">yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql     <span class="comment"># 安装常用模块</span></span><br></pre></td></tr></table></figure>
 <h2 id="安装数据库"><a href="#安装数据库" class="headerlink" title="安装数据库"></a>安装数据库</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum -y install mysql mysql-server mysql-devel    <span class="comment"># 安装 MySQL</span></span><br><span class="line">chkconfig mysqld on                              <span class="comment"># 设置开机自启动</span></span><br><span class="line">service mysqld start                             <span class="comment"># 启动 MySQL</span></span><br><span class="line">/usr/bin/mysql_secure_installation               <span class="comment"># 运行配置向导，如设置 ROOT 密码等</span></span><br></pre></td></tr></table></figure>
 <h2 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h2><ul>
 <li><p>检查当前安装的PHP包：</p>
