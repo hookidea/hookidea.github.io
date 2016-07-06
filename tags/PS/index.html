@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="CentOS,PHP,Lamp,Apache,MySQL," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -91,16 +91,15 @@
 
 
 
-<meta name="description" content="安装Apache">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CentOS 下使用 Yum 安装 Lamp 环境">
-<meta property="og:url" content="http://hookidea.github.io/2016/05/18/CentOS-LAMP/index.html">
+<meta name="description" content="2016 coding happy.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hookidea">
+<meta property="og:url" content="http://hookidea.github.io/tags/PS/index.html">
 <meta property="og:site_name" content="Hookidea">
-<meta property="og:description" content="安装Apache">
-<meta property="og:updated_time" content="2016-07-05T10:21:23.326Z">
+<meta property="og:description" content="2016 coding happy.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS 下使用 Yum 安装 Lamp 环境">
-<meta name="twitter:description" content="安装Apache">
+<meta name="twitter:title" content="Hookidea">
+<meta name="twitter:description" content="2016 coding happy.">
 
 
 
@@ -121,7 +120,7 @@
 
 
 
-  <title> CentOS 下使用 Yum 安装 Lamp 环境 | Hookidea </title>
+  <title> 标签: PS | Hookidea </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -152,7 +151,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -253,199 +252,46 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        PS
+        <small>标签</small>
+      </h2>
+    </div>
 
     
-      <header class="post-header">
+      
 
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
+            <a class="post-title-link" href="/2016/07/06/PS-高级证-教程/" itemprop="url">
               
-                CentOS 下使用 Yum 安装 Lamp 环境
+                <span itemprop="name">PS 高级证 - 教程</span>
               
-            
-          </h1>
+            </a>
         
+      </h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-18T07:29:51+08:00" content="2016-05-18">
-              2016-05-18
-            </time>
-          </span>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-07-06T22:23:33+08:00"
+              content="2016-07-06" >
+          07-06
+        </time>
+      </div>
 
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/18/CentOS-LAMP/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/18/CentOS-LAMP/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/05/18/CentOS-LAMP/" class="leancloud_visitors" data-flag-title="CentOS 下使用 Yum 安装 Lamp 环境">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h2><a id="more"></a>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum -y install httpd          <span class="comment"># 安装 Apache</span></span><br><span class="line">chkconfig httpd on            <span class="comment"># 设置开机自启动</span></span><br><span class="line">service httpd start           <span class="comment"># 启动 Apache</span></span><br><span class="line">yum -y install httpd-manual mod_ssl mod_perl mod_auth_mysql     <span class="comment"># 安装常用模块</span></span><br></pre></td></tr></table></figure>
-<h2 id="安装数据库"><a href="#安装数据库" class="headerlink" title="安装数据库"></a>安装数据库</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum -y install mysql mysql-server mysql-devel    <span class="comment"># 安装 MySQL</span></span><br><span class="line">chkconfig mysqld on                              <span class="comment"># 设置开机自启动</span></span><br><span class="line">service mysqld start                             <span class="comment"># 启动 MySQL</span></span><br><span class="line">/usr/bin/mysql_secure_installation               <span class="comment"># 运行配置向导，如设置 ROOT 密码等</span></span><br></pre></td></tr></table></figure>
-<h2 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h2><ul>
-<li><p>检查当前安装的PHP包：</p>
-<pre><code>yum list installed | grep php
-
-如果有安装的PHP包，删除他们：
-
-yum remove php.x86_64 php-cli.x86_64 php-common.x86_64 php-gd.x86_64 php-ldap.x86_64 php-mbstring.x86_64 php-mcrypt.x86_64 php-mysql.x86_64 php-pdo.x86_64
-</code></pre></li>
-<li><p>安装新版PHP所在的源：</p>
-<ul>
-<li><p>Centos 5.X：</p>
-<pre><code>rpm -Uvh http:#mirror.webtatic.com/yum/el5/latest.rpm
-</code></pre></li>
-<li><p>CentOs 6.x：</p>
-<pre><code>rpm -Uvh http:#mirror.webtatic.com/yum/el6/latest.rpm
-</code></pre></li>
-<li><p>CentOs 7.X：</p>
-<pre><code>rpm -Uvh https:#mirror.webtatic.com/yum/el7/epel-release.rpm
-rpm -Uvh https:#mirror.webtatic.com/yum/el7/webtatic-release.rpm
-</code></pre></li>
-</ul>
-</li>
-<li><p>开始安装PHP：</p>
-<ul>
-<li><p>PHP5.5：</p>
-<pre><code>yum install php55w.x86_64 php55w-cli.x86_64 php55w-common.x86_64 php55w-gd.x86_64 php55w-ldap.x86_64 php55w-mbstring.x86_64 php55w-mcrypt.x86_64 php55w-mysql.x86_64 php55w-pdo.x86_64
-</code></pre></li>
-<li><p>PHP5.6：</p>
-<pre><code>yum install php56w.x86_64 php56w-cli.x86_64 php56w-common.x86_64 php56w-gd.x86_64 php56w-ldap.x86_64 php56w-mbstring.x86_64 php56w-mcrypt.x86_64 php56w-mysql.x86_64 php56w-pdo.x86_64
-</code></pre></li>
-<li><p>PHP7.0：</p>
-<pre><code>yum install php70w.x86_64 php70w-cli.x86_64 php70w-common.x86_64 php70w-gd.x86_64 php70w-ldap.x86_64 php70w-mbstring.x86_64 php70w-mcrypt.x86_64 php70w-mysql.x86_64 php70w-pdo.x86_64
-</code></pre></li>
-</ul>
-</li>
-<li><p>安装PHP-FPM</p>
-<ul>
-<li><p>PHP5.5：</p>
-<pre><code>yum install php55w-fpm 
-</code></pre></li>
-<li><p>PHP5.6：</p>
-<pre><code>yum install php56w-fpm 
-</code></pre></li>
-<li><p>PHP7.0：</p>
-<pre><code>yum install php70w-fpm
-</code></pre></li>
-</ul>
-</li>
-<li><p>安装完成之后，如何安装 PHP 模块（注意：以上安装已经安装常用模块，无需重新安装）：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install php55w-gd.x86_64</span><br><span class="line">yum install php56w-gd.x86_64</span><br><span class="line">yum install php70w-gd.x86_64</span><br><span class="line">yum install php70w-mbstring.x86_64</span><br><span class="line">.....</span><br><span class="line"><span class="comment"># 以此类推</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="安装完成，一般可直接投入使用"><a href="#安装完成，一般可直接投入使用" class="headerlink" title="安装完成，一般可直接投入使用"></a>安装完成，一般可直接投入使用</h2>
-      
-    </div>
-
-    <div>
-      
-        
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/CentOS/" rel="tag">#CentOS</a>
-          
-            <a href="/tags/PHP/" rel="tag">#PHP</a>
-          
-            <a href="/tags/Lamp/" rel="tag">#Lamp</a>
-          
-            <a href="/tags/Apache/" rel="tag">#Apache</a>
-          
-            <a href="/tags/MySQL/" rel="tag">#MySQL</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/05/RAP-的安装与使用/" rel="prev" title="CentOS7 - RAP - 安装与使用">
-                CentOS7 - RAP - 安装与使用 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
+    
   </div>
+
+  
 
 
           </div>
@@ -453,14 +299,6 @@ rpm -Uvh https:#mirror.webtatic.com/yum/el7/webtatic-release.rpm
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/05/18/CentOS-LAMP/"
-           data-title="CentOS 下使用 Yum 安装 Lamp 环境" data-url="http://hookidea.github.io/2016/05/18/CentOS-LAMP/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -480,17 +318,8 @@ rpm -Uvh https:#mirror.webtatic.com/yum/el7/webtatic-release.rpm
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://o70oulhkd.bkt.clouddn.com/scottocat.jpg"
@@ -560,17 +389,6 @@ rpm -Uvh https:#mirror.webtatic.com/yum/el7/webtatic-release.rpm
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Apache"><span class="nav-number">1.</span> <span class="nav-text">安装Apache</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装数据库"><span class="nav-number">2.</span> <span class="nav-text">安装数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装PHP"><span class="nav-number">3.</span> <span class="nav-text">安装PHP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装完成，一般可直接投入使用"><span class="nav-number">4.</span> <span class="nav-text">安装完成，一般可直接投入使用</span></a></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -674,10 +492,6 @@ rpm -Uvh https:#mirror.webtatic.com/yum/el7/webtatic-release.rpm
 
 
   
-  <script type="text/javascript" src="http://o70oulhkd.bkt.clouddn.com/scrollspy.js"></script>
-<script type="text/javascript" src="http://o70oulhkd.bkt.clouddn.com/post-details.js"></script>
-
-
 
   
 
