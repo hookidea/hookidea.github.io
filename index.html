@@ -277,7 +277,7 @@
               
                 
                 <a class="post-title-link" href="/2016/07/05/RAP-的安装与使用/" itemprop="url">
-                  RAP - 安装与使用
+                  CentOS7 - RAP - 安装与使用
                 </a>
               
             
@@ -312,7 +312,7 @@
 
           
           
-             <span id="/2016/07/05/RAP-的安装与使用/" class="leancloud_visitors" data-flag-title="RAP - 安装与使用">
+             <span id="/2016/07/05/RAP-的安装与使用/" class="leancloud_visitors" data-flag-title="CentOS7 - RAP - 安装与使用">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -335,12 +335,185 @@
 
       
         
-          <h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/05/RAP-的安装与使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <h2 id="阅读全文"><a href="#阅读全文" class="headerlink" title="阅读全文"></a>阅读全文</h2><pre><code>&lt;!-- more --&gt;
+</code></pre><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code># 安装其他依赖软件
+yum -y install tomcat unzip
+
+# 让 tomcat 开机自启动
+systemctl enable tomcat
+
+# 安装 Nginx，示例安装的是 1.10.1 版本
+yum -y install pcre-devel zlib-devel                    # 安装依赖
+wget http://nginx.org/download/nginx-1.10.1.tar.gz      # 下载
+tar nginx-1.10.1.tar.gz                                 # 解压
+cd nginx-1.10.1                                         # 进入目录
+./configure --prefix=/usr/local/nginx &amp;&amp; make &amp;&amp; make install 
+
+# 启动 Nginx
+/usr/local/nginx/sbin/nginx
+
+# 让 Nginx 自启动
+vim /etc/rc.local
+    # 添加
+    /usr/local/nginx/sbin/nginx
+
+# 安装 Redis
+    wget http://download.redis.io/releases/redis-3.2.1.tar.gz  # 下载
+    tar -xzf redis-3.2.1.tar.gz                   # 解压
+    cd redis-3.2.1                                # 进入目录
+    make &amp;&amp; make PREFIX=/usr/local/redis install  # 指定安装路径
+    cp redis.conf /usr/local/redis                # 复制配置文件
+    vim /usr/local/redis/redis.conf               # 修改 daemonize yes 开启后台运行 Redis
+
+# 启动 Redis
+/usr/local/redis/bin/redis-server /usr/local/redis/redis.conf
+
+# 让 Redis 自启动
+vim /etc/rc.local
+    # 添加
+    /usr/local/redis/bin/redis-server /usr/local/redis/redis.conf
+
+# 安装 MySQL
+wget http://repo.mysql.com/yum/mysql-5.6-community/el/7/x86_64/mysql-community-release-el7-5.noarch.rpm
+rpm -vih mysql-community-release-el7-5.noarch.rpm
+yum install -y mysql-server
+
+# 下载war包
+wget http://rap.taobao.org/release/RAP-0.14.0-SNAPSHOT.war
+
+# 解压到ROOT目录，记住 ROOT 目录所在的路径
+unzip -x RAP-0.14.0-SNAPSHOT.war -d ROOT
+
+# 启动 MySQL + 开启自启动
+systemctl start mysqld
+systemctl enable mysqld
+
+# 配置 ROOT 密码及初始化
+mysql_secure_installation
+
+# 连接 MySQL
+mysql -uroot -p
+
+# 创建供RAP使用的数据库及用户
+create database rap_db default charset utf8 COLLATE utf8_general_ci;
+grant all on rap_db.* to &apos;rap&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;password&apos;;
+flush privileges;
+
+# 推出 MySQL 连接
+exit
+
+# 初始化数据库，输入刚才创建RAP用户的密码，上面是 password
+mysql -u rap -p rap_db &lt; ROOT/WEB-INF/classes/database/initialize.sql
+
+# 配置应用中数据库连接
+vi ROOT/WEB-INF/classes/config.properties 
+    # 修改为刚才创建的数据库用户名及密码
+    jdbc.username=rap
+    jdbc.password=password
+    # 其中redis配置可根据需求更改
+
+# 配置tomcat
+cp -rf ROOT /var/lib/tomcat/webapps
+chown -R tomcat. /var/lib/tomcat/webapps/ROOT
+
+# 重启tomcat
+systemctl restart tomcat
+
+# 配置nginx
+vim /usr/local/nginx/conf/nginx.conf
+    # 添加
+    server {
+        listen        80;
+        server_name   127.0.0.1;                    # 本机IP或者域名
+        access_log    /usr/local/nginx/logs/rap_access.log;
+        charset       utf-8;
+        autoindex     off;
+
+        location / {
+            proxy_pass   http://localhost:8080;
+
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        }
+    }
+
+# 配置防火墙，开放 80,8080,22（可选） 端口
+# 禁止所有进入
+iptables -P INPUT DROP
+# 禁止所有转发
+iptables -P FORWARD DROP
+# 允许所有出去
+iptables -P OUTPUT ACCEPT
+
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT        # 可选
+service iptables save       # 命令不存在则：yum install iptables-services
+
+# 访问
+ip addr         # 获取虚拟机的IP地址
+http://ip地址
+</code></pre><h2 id="RAP-的插件-rap-pluging-js"><a href="#RAP-的插件-rap-pluging-js" class="headerlink" title="RAP 的插件 rap.pluging.js"></a>RAP 的插件 rap.pluging.js</h2><ul>
+<li><p>作用：拦截 JS 的 AJAX 的请求，让其从 Mock 获取其自动生成数据</p>
+</li>
+<li><p>mode：当 <code>mode=0</code> 时，AJAX 不会从 Mock 获取其自动生成数据，而是变成校验模式，检验接口返回的数据（此时数据使用的不是 Mock 自动生成的数据，而是真实数据）是否符合接口定义的，通过查看浏览器的 <code>console</code> 查看校验结果。</p>
+<pre><code>http://rapapi.net/rap.pluging.js?projectId=577&amp;mode=0
+</code></pre></li>
+</ul>
+<h2 id="Mock-语法"><a href="#Mock-语法" class="headerlink" title="Mock 语法"></a>Mock 语法</h2><pre><code>文档：http://mockjs.com/0.1/#mock
+
+# 注意：必须点击右上角的 Mock 才能显示 Mock 数据规则，否则默认是不显示的
+@EMAIL                    # 自动生成一个合法的EMAIL
+
+&apos;string1|1-10&apos;: &apos;*&apos;,      # 字符串，重复1-10个
+&apos;string2|3&apos;: &apos;value&apos;,     # 字符串，固定重复3次
+
+&apos;number1|+1&apos;: 100,        # 数字，从100开始自增
+&apos;number2|1-100&apos;: 100,     # 数字，1-100的随机整数
+&apos;number3|1-100.1-10&apos;: 1,  # 数字，整数部分的“值”是1-100的随机整数，小数部分的“长度”是1-10
+&apos;number4|123.1-10&apos;: 1,    # 数字，整数部分的“值”是123，小数部分的“长度”是1-10
+&apos;number5|123.3&apos;: 1,       # 数字，整数部分的“值”是123，小数部分的“长度”是3
+&apos;number6|123.10&apos;: 1.123,  # 
+
+&apos;boolean1|1&apos;: true,       # true
+&apos;boolean2|1-2&apos;: true,     # false/true 的随机
+
+&apos;object1|2-4&apos;: {          # 对象的长度是 2-4，其项的值从下面随机选取
+    &apos;110000&apos;: &apos;北京市&apos;,   
+    &apos;120000&apos;: &apos;天津市&apos;,
+    &apos;130000&apos;: &apos;河北省&apos;,
+    &apos;140000&apos;: &apos;山西省&apos;
+},
+&apos;object2|2&apos;: {            # 对象的长度是 2，其项的值从下面随机选取
+    &apos;310000&apos;: &apos;上海市&apos;,
+    &apos;320000&apos;: &apos;江苏省&apos;,
+    &apos;330000&apos;: &apos;浙江省&apos;,
+    &apos;340000&apos;: &apos;安徽省&apos;
+},
+
+&apos;array1|1&apos;: [&apos;AMD&apos;, &apos;CMD&apos;, &apos;KMD&apos;, &apos;UMD&apos;],   # 随机选取一个值，注意：其生成的数据不是数组！！！
+&apos;array2|1-10&apos;: [&apos;Mock.js&apos;],     # 把所有项重复1-10次
+    如：
+        &apos;array2|1-3&apos;: [&apos;Mock.js&apos;, &apos;php&apos;] 则：、
+
+            &quot;array2&quot;: [
+                &quot;Mock.js&quot;,
+                &quot;php&quot;,
+                &quot;Mock.js&quot;,
+                &quot;php&quot;,
+                &quot;Mock.js&quot;,
+                &quot;php&quot;
+            ]
+&apos;array3|3&apos;: [&apos;Mock.js&apos;],        # 把所有项重复3次
+</code></pre><h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><pre><code>Alt + F         # 工作区搜索，候选列表出现时可通过 上、下、回车键操作
+Ctrl + Enter    # 位于参数编辑时，根据当前行的参数标识或参数名称自动补全
+Tab             # 位于参数编辑时，自动切换到下一位置
+Shift + Tab     # 位于参数编辑时，自动切换到上一位置
+</code></pre>
+          
         
       
     </div>
