@@ -91,43 +91,16 @@
 
 
 
-<meta name="description" content="阅读全文&amp;lt;!-- more --&amp;gt;
-安装# 安装其他依赖软件
-yum -y install tomcat unzip
-
-# 让 tomcat 开机自启动
-systemctl enable tomcat
-
-# 安装 Nginx，示例安装的是 1.10.1 版本
-yum -y install pcre-devel zlib-devel                    # 安装依赖
-w">
+<meta name="description" content="安装">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS7 - RAP - 安装与使用">
 <meta property="og:url" content="http://hookidea.github.io/2016/07/05/RAP-的安装与使用/index.html">
 <meta property="og:site_name" content="Hookidea">
-<meta property="og:description" content="阅读全文&amp;lt;!-- more --&amp;gt;
-安装# 安装其他依赖软件
-yum -y install tomcat unzip
-
-# 让 tomcat 开机自启动
-systemctl enable tomcat
-
-# 安装 Nginx，示例安装的是 1.10.1 版本
-yum -y install pcre-devel zlib-devel                    # 安装依赖
-w">
-<meta property="og:updated_time" content="2016-07-06T10:50:40.183Z">
+<meta property="og:description" content="安装">
+<meta property="og:updated_time" content="2016-07-06T11:33:43.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS7 - RAP - 安装与使用">
-<meta name="twitter:description" content="阅读全文&amp;lt;!-- more --&amp;gt;
-安装# 安装其他依赖软件
-yum -y install tomcat unzip
-
-# 让 tomcat 开机自启动
-systemctl enable tomcat
-
-# 安装 Nginx，示例安装的是 1.10.1 版本
-yum -y install pcre-devel zlib-devel                    # 安装依赖
-w">
+<meta name="twitter:description" content="安装">
 
 
 
@@ -357,126 +330,126 @@ w">
       
 
       
-        <h2 id="阅读全文"><a href="#阅读全文" class="headerlink" title="阅读全文"></a>阅读全文</h2><pre><code>&lt;!-- more --&gt;
-</code></pre><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code># 安装其他依赖软件
-yum -y install tomcat unzip
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><a id="more"></a>
+<pre><code># 安装其他依赖软件
+    yum -y install tomcat unzip
 
-# 让 tomcat 开机自启动
-systemctl enable tomcat
+    # 让 tomcat 开机自启动
+    systemctl enable tomcat
 
-# 安装 Nginx，示例安装的是 1.10.1 版本
-yum -y install pcre-devel zlib-devel                    # 安装依赖
-wget http://nginx.org/download/nginx-1.10.1.tar.gz      # 下载
-tar nginx-1.10.1.tar.gz                                 # 解压
-cd nginx-1.10.1                                         # 进入目录
-./configure --prefix=/usr/local/nginx &amp;&amp; make &amp;&amp; make install 
+    # 安装 Nginx，示例安装的是 1.10.1 版本
+    yum -y install pcre-devel zlib-devel                    # 安装依赖
+    wget http://nginx.org/download/nginx-1.10.1.tar.gz      # 下载
+    tar nginx-1.10.1.tar.gz                                 # 解压
+    cd nginx-1.10.1                                         # 进入目录
+    ./configure --prefix=/usr/local/nginx &amp;&amp; make &amp;&amp; make install 
 
-# 启动 Nginx
-/usr/local/nginx/sbin/nginx
-
-# 让 Nginx 自启动
-vim /etc/rc.local
-    # 添加
+    # 启动 Nginx
     /usr/local/nginx/sbin/nginx
 
-# 安装 Redis
-    wget http://download.redis.io/releases/redis-3.2.1.tar.gz  # 下载
-    tar -xzf redis-3.2.1.tar.gz                   # 解压
-    cd redis-3.2.1                                # 进入目录
-    make &amp;&amp; make PREFIX=/usr/local/redis install  # 指定安装路径
-    cp redis.conf /usr/local/redis                # 复制配置文件
-    vim /usr/local/redis/redis.conf               # 修改 daemonize yes 开启后台运行 Redis
+    # 让 Nginx 自启动
+    vim /etc/rc.local
+        # 添加
+        /usr/local/nginx/sbin/nginx
 
-# 启动 Redis
-/usr/local/redis/bin/redis-server /usr/local/redis/redis.conf
+    # 安装 Redis
+        wget http://download.redis.io/releases/redis-3.2.1.tar.gz  # 下载
+        tar -xzf redis-3.2.1.tar.gz                   # 解压
+        cd redis-3.2.1                                # 进入目录
+        make &amp;&amp; make PREFIX=/usr/local/redis install  # 指定安装路径
+        cp redis.conf /usr/local/redis                # 复制配置文件
+        vim /usr/local/redis/redis.conf               # 修改 daemonize yes 开启后台运行 Redis
 
-# 让 Redis 自启动
-vim /etc/rc.local
-    # 添加
+    # 启动 Redis
     /usr/local/redis/bin/redis-server /usr/local/redis/redis.conf
 
-# 安装 MySQL
-wget http://repo.mysql.com/yum/mysql-5.6-community/el/7/x86_64/mysql-community-release-el7-5.noarch.rpm
-rpm -vih mysql-community-release-el7-5.noarch.rpm
-yum install -y mysql-server
+    # 让 Redis 自启动
+    vim /etc/rc.local
+        # 添加
+        /usr/local/redis/bin/redis-server /usr/local/redis/redis.conf
 
-# 下载war包
-wget http://rap.taobao.org/release/RAP-0.14.0-SNAPSHOT.war
+    # 安装 MySQL
+    wget http://repo.mysql.com/yum/mysql-5.6-community/el/7/x86_64/mysql-community-release-el7-5.noarch.rpm
+    rpm -vih mysql-community-release-el7-5.noarch.rpm
+    yum install -y mysql-server
 
-# 解压到ROOT目录，记住 ROOT 目录所在的路径
-unzip -x RAP-0.14.0-SNAPSHOT.war -d ROOT
+    # 下载war包
+    wget http://rap.taobao.org/release/RAP-0.14.0-SNAPSHOT.war
 
-# 启动 MySQL + 开启自启动
-systemctl start mysqld
-systemctl enable mysqld
+    # 解压到ROOT目录，记住 ROOT 目录所在的路径
+    unzip -x RAP-0.14.0-SNAPSHOT.war -d ROOT
 
-# 配置 ROOT 密码及初始化
-mysql_secure_installation
+    # 启动 MySQL + 开启自启动
+    systemctl start mysqld
+    systemctl enable mysqld
 
-# 连接 MySQL
-mysql -uroot -p
+    # 配置 ROOT 密码及初始化
+    mysql_secure_installation
 
-# 创建供RAP使用的数据库及用户
-create database rap_db default charset utf8 COLLATE utf8_general_ci;
-grant all on rap_db.* to &apos;rap&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;password&apos;;
-flush privileges;
+    # 连接 MySQL
+    mysql -uroot -p
 
-# 推出 MySQL 连接
-exit
+    # 创建供RAP使用的数据库及用户
+    create database rap_db default charset utf8 COLLATE utf8_general_ci;
+    grant all on rap_db.* to &apos;rap&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;password&apos;;
+    flush privileges;
 
-# 初始化数据库，输入刚才创建RAP用户的密码，上面是 password
-mysql -u rap -p rap_db &lt; ROOT/WEB-INF/classes/database/initialize.sql
+    # 推出 MySQL 连接
+    exit
 
-# 配置应用中数据库连接
-vi ROOT/WEB-INF/classes/config.properties 
-    # 修改为刚才创建的数据库用户名及密码
-    jdbc.username=rap
-    jdbc.password=password
-    # 其中redis配置可根据需求更改
+    # 初始化数据库，输入刚才创建RAP用户的密码，上面是 password
+    mysql -u rap -p rap_db &lt; ROOT/WEB-INF/classes/database/initialize.sql
 
-# 配置tomcat
-cp -rf ROOT /var/lib/tomcat/webapps
-chown -R tomcat. /var/lib/tomcat/webapps/ROOT
+    # 配置应用中数据库连接
+    vi ROOT/WEB-INF/classes/config.properties 
+        # 修改为刚才创建的数据库用户名及密码
+        jdbc.username=rap
+        jdbc.password=password
+        # 其中redis配置可根据需求更改
 
-# 重启tomcat
-systemctl restart tomcat
+    # 配置tomcat
+    cp -rf ROOT /var/lib/tomcat/webapps
+    chown -R tomcat. /var/lib/tomcat/webapps/ROOT
 
-# 配置nginx
-vim /usr/local/nginx/conf/nginx.conf
-    # 添加
-    server {
-        listen        80;
-        server_name   127.0.0.1;                    # 本机IP或者域名
-        access_log    /usr/local/nginx/logs/rap_access.log;
-        charset       utf-8;
-        autoindex     off;
+    # 重启tomcat
+    systemctl restart tomcat
 
-        location / {
-            proxy_pass   http://localhost:8080;
+    # 配置nginx
+    vim /usr/local/nginx/conf/nginx.conf
+        # 添加
+        server {
+            listen        80;
+            server_name   127.0.0.1;                    # 本机IP或者域名
+            access_log    /usr/local/nginx/logs/rap_access.log;
+            charset       utf-8;
+            autoindex     off;
 
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            location / {
+                proxy_pass   http://localhost:8080;
 
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+            }
         }
-    }
 
-# 配置防火墙，开放 80,8080,22（可选） 端口
-# 禁止所有进入
-iptables -P INPUT DROP
-# 禁止所有转发
-iptables -P FORWARD DROP
-# 允许所有出去
-iptables -P OUTPUT ACCEPT
+    # 配置防火墙，开放 80,8080,22（可选） 端口
+    # 禁止所有进入
+    iptables -P INPUT DROP
+    # 禁止所有转发
+    iptables -P FORWARD DROP
+    # 允许所有出去
+    iptables -P OUTPUT ACCEPT
 
-iptables -A INPUT -p tcp --dport 80 -j ACCEPT
-iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
-iptables -A INPUT -p tcp --dport 22 -j ACCEPT        # 可选
-service iptables save       # 命令不存在则：yum install iptables-services
+    iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+    iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
+    iptables -A INPUT -p tcp --dport 22 -j ACCEPT        # 可选
+    service iptables save       # 命令不存在则：yum install iptables-services
 
-# 访问
-ip addr         # 获取虚拟机的IP地址
-http://ip地址
+    # 访问
+    ip addr         # 获取虚拟机的IP地址
+    http://ip地址
 </code></pre><h2 id="RAP-的插件-rap-pluging-js"><a href="#RAP-的插件-rap-pluging-js" class="headerlink" title="RAP 的插件 rap.pluging.js"></a>RAP 的插件 rap.pluging.js</h2><ul>
 <li><p>作用：拦截 JS 的 AJAX 的请求，让其从 Mock 获取其自动生成数据</p>
 </li>
@@ -707,7 +680,7 @@ Shift + Tab     # 位于参数编辑时，自动切换到上一位置
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#阅读全文"><span class="nav-number">1.</span> <span class="nav-text">阅读全文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAP-的插件-rap-pluging-js"><span class="nav-number">3.</span> <span class="nav-text">RAP 的插件 rap.pluging.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mock-语法"><span class="nav-number">4.</span> <span class="nav-text">Mock 语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷键"><span class="nav-number">5.</span> <span class="nav-text">快捷键</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAP-的插件-rap-pluging-js"><span class="nav-number">2.</span> <span class="nav-text">RAP 的插件 rap.pluging.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mock-语法"><span class="nav-number">3.</span> <span class="nav-text">Mock 语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷键"><span class="nav-number">4.</span> <span class="nav-text">快捷键</span></a></li></ol></div>
             
           </div>
         </section>
