@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hookidea.github.io/"/>
-  <updated>2016-07-06T14:24:04.593Z</updated>
+  <updated>2016-07-06T14:25:27.538Z</updated>
   <id>http://hookidea.github.io/</id>
   
   <author>
@@ -20,10 +20,10 @@
     <link href="http://hookidea.github.io/2016/07/06/PS-%E9%AB%98%E7%BA%A7%E8%AF%81-%E6%95%99%E7%A8%8B/"/>
     <id>http://hookidea.github.io/2016/07/06/PS-高级证-教程/</id>
     <published>2016-07-06T14:23:33.000Z</published>
-    <updated>2016-07-06T14:24:04.593Z</updated>
+    <updated>2016-07-06T14:25:27.538Z</updated>
     
-    <content type="html">&lt;p&gt;   &lt;a href=&quot;http://sunboy.me&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;关注我&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;[TOC]&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://sunboy.me&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;关注我&lt;/a&gt;&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h2 id=&quot;1-3-制作火焰男效果&quot;&gt;&lt;a href=&quot;#1-3-制作火焰男效果&quot; class=&quot;headerlink&quot; title=&quot;1.3 - 制作火焰男效果&quot;&gt;&lt;/a&gt;1.3 - 制作火焰男效果&lt;/h2&gt;&lt;p&gt;1、打开素材图片“Yps1-03a.jpg”，执行“抽出”滤镜命令，在抽出对话框中，使用‘吸管’工具设置合适的‘强制前景色’（取火焰边缘颜色的中间色），设置画笔大小（取大笔刷以覆盖整个要抽出的火焰区域），使用‘边缘高光器’工具，在中间预览窗口中对要抽出的火焰区进行涂抹，预览效果，满意之后确定得到火焰图。（不满意则重新设定参数）&lt;/p&gt;
 &lt;p&gt;2、打开素材图片“Yps1-03b.jpg”，双击将背景图层转换为普通图层0，去除蓝色背景，CTRL+T按效果图调整图片的大小和位置，并添加一背景图层，填色（白色）。 &lt;/p&gt;
 &lt;p&gt;3、将刚制作的火焰图拉入形成一新图层，CTRL+T按效果图调整火焰大小和位置，使用橡皮擦工具去除多余火苗，使火焰和头发更贴切。 &lt;/p&gt;
@@ -285,9 +285,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;   &lt;a href=&quot;http://sunboy.me&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;关注我&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h2 id=&quot;1-3-制作火焰男效果&quot;&gt;&lt;a href=&quot;#1-3-制作火焰男效果&quot; class=&quot;
+      &lt;p&gt;&lt;a href=&quot;http://sunboy.me&quot;&gt;关注我&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
